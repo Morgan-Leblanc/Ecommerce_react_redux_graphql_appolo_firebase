@@ -7,8 +7,8 @@ export default function Directory() {
   const [sections, setSections] = useState(dataMenu.menu);
   return (
       <div className="directory-menu">
-        {sections.map((section) => (
-          <MenuItem key={section.id} title={section.title} image={section.imageUrl} size={section.size} />
+        {sections.map(({id,...propsSection}) => (
+          <MenuItem key={id} {...propsSection}/>
         ))}
       </div>
   );
