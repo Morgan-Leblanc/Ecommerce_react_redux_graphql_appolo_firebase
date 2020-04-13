@@ -5,7 +5,8 @@ import Homepage from "./screens/homepage/homepage.component";
 import ShopPage from "./screens/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignUpAndSignIn from "./screens/signin-signup/signinsignup";
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -13,9 +14,8 @@ function App() {
   let unsubscribeFromAuth = null;
 
   useEffect(() => {
-    unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-      console.log(user);
+    unsubscribeFromAuth = auth.onAuthStateChanged( async user => {
+      createUserProfileDocument(user)
       return () => {
         unsubscribeFromAuth()
       }
