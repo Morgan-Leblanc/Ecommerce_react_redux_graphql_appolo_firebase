@@ -37,7 +37,7 @@ export default function SignUp() {
       <form className="sign-up-form" onSubmit={handleSubmit}>
         <FormInput
           type="text"
-          name="DisplayName"
+          name="displayName"
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
           label="Display Name"

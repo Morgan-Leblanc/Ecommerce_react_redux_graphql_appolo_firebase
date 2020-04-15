@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Homepage from "./screens/homepage/homepage.component";
@@ -9,6 +10,7 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
+  const dispatch = useDispatch();
 
   let unsubscribeFromAuth = null;
 
@@ -21,21 +23,21 @@ function App() {
             id: snapShot.id,
             ...snapShot.data(),
           });
+          dispatch({ type: "SET_CURRENT_USER", payload: userAuth });
         });
       }
-      setCurrentUser({userAuth})
+      setCurrentUser(userAuth);
       return () => {
         unsubscribeFromAuth();
       };
     });
   }, []);
   console.log(currentUser);
-  
 
   return (
     <div>
       <BrowserRouter>
-        <Header currentUser={currentUser} />
+        <Header />
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/shop" component={ShopPage} />
