@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
 import "./App.css";
 import Homepage from "./screens/homepage/homepage.component";
 import ShopPage from "./screens/shop/shop.component";
@@ -40,8 +40,14 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/" component={Homepage} />
-          <Route exact path="/shop" component={ShopPage} />
-          <Route exact path="/signin" component={SignUpAndSignIn} />
+          <Route path="/shop" component={ShopPage} />
+          <Route
+            exact
+            path="/signin"
+            render={() =>
+              currentUser ? <Redirect to="/" /> : <SignUpAndSignIn />
+            }
+          />
         </Switch>
       </BrowserRouter>
     </div>

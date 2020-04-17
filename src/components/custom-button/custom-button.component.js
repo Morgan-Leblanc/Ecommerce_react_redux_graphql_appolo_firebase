@@ -7,13 +7,11 @@ export default function CustomButton({
   ...otherProps
 }) {
   return (
-    <div>
       <button
         className={`${isGoogleSignIn ? "google-sign-in" : ""} custom-button`}
         {...otherProps}
       >
         {children}
       </button>
-    </div>
   );
 }

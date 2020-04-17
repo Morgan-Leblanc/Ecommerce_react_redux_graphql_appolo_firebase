@@ -4,13 +4,16 @@ import "./header.styles.scss";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/original.svg";
 import { auth } from "../../firebase/firebase.utils";
+import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropDown from "../cart-dropdown/cart-dropdown.component";
+
 
 function Header() {
   const currentUser = useSelector((state) => state.user.currentUser);
+  const hidden = useSelector((state) => state.cart.hidden);
   const dispatch = useDispatch();
 
   console.log(currentUser);
-
 
   const UserStatus = () => {
     auth.signOut();
@@ -29,7 +32,7 @@ function Header() {
         <Link className="option" to="/contact">
           CONTACT
         </Link>
-        {currentUser? (
+        {currentUser ? (
           <div className="option" onClick={() => UserStatus()}>
             SIGN OUT
           </div>
@@ -38,7 +41,9 @@ function Header() {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
+       {hidden ? <CartDropDown /> : "" } 
     </div>
   );
 }
