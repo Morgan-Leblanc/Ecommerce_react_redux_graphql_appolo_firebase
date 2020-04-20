@@ -6,6 +6,7 @@ import Homepage from "./screens/homepage/homepage.component";
 import ShopPage from "./screens/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignUpAndSignIn from "./screens/signin-signup/signinsignup";
+import CheckoutPage from "./screens/checkout/checkout.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
               currentUser ? <Redirect to="/" /> : <SignUpAndSignIn />
             }
           />
+          <Route  exact path="/checkout" component={CheckoutPage} />
         </Switch>
       </BrowserRouter>
     </div>
