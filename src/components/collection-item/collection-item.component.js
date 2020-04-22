@@ -1,12 +1,13 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./collection-item.styles.scss";
 import CustomButton from "../custom-button/custom-button.component";
 
 export default function CollectionItem({ item }) {
   const { name, price, imageUrl } = item;
+  console.log(item);
+  
   const dispatch = useDispatch();
-
 
   const addItemToStore = (item) => {
     dispatch({ type: "ADD_ITEM", payload: item });
@@ -14,6 +15,7 @@ export default function CollectionItem({ item }) {
 
   return (
     <div className="collection-item">
+      
       <div className="image" style={{ backgroundImage: `url(${imageUrl})` }} />
       <div className="collection-footer">
         <span className="name">{name}</span>

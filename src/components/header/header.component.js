@@ -12,14 +12,18 @@ function Header() {
   const currentUser = useSelector((state) => state.user.currentUser);
   const hidden = useSelector((state) => state.cart.hidden);
   const dispatch = useDispatch();
+  
 
   console.log(currentUser);
+  
 
   const UserStatus = () => {
     auth.signOut();
     dispatch({ type: "SET_CURRENT_USER", payload: null });
   };
 
+
+  
   return (
     <div className="header">
       <Link className="logo-container" to="/">

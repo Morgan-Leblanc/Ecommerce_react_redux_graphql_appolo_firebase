@@ -15,6 +15,8 @@ function App() {
 
   let unsubscribeFromAuth = null;
 
+  console.log(currentUser);
+  
   useEffect(() => {
     unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -33,12 +35,11 @@ function App() {
       };
     });
   }, []);
-  console.log(currentUser);
 
   return (
     <div>
       <BrowserRouter>
-        <Header />
+        <Header  user={currentUser} />
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route path="/shop" component={ShopPage} />

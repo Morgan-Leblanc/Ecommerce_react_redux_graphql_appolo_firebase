@@ -1,12 +1,10 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useSelector } from "react-redux";
 import "./checkout.styles.scss";
 import CheckoutItem from "../../components/checkout-item/checkout.component"
 
 export default function CheckoutPage() {
   const items = useSelector((state) => state.cart.cartItems);
-
-
   return (
     <div className="checkout-page">
       <div className="checkout-header">
@@ -32,7 +30,7 @@ export default function CheckoutPage() {
           {" "}
           TOTAL: $
           {items.reduce(
-            (accumaltedPrice, item) => accumaltedPrice + item.price,
+            (accumaltedPrice, item) => accumaltedPrice + (item.price * item.quantity),
             0
           )}
         </span>

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import dataMenu from "../../data/menuItem";
+import { useSelector } from "react-redux"
 import MenuItem from "../menu-item/menu-item.component";
 import "./directory.styles.scss"
 
 export default function Directory() {
-  const [sections, setSections] = useState(dataMenu.menu);
+  const sections = useSelector((state => state.menu.sections))
   return (
       <div className="directory-menu">
         {sections.map(({id,...propsSection}) => (

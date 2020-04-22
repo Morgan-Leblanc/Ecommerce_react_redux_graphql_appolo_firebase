@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./checkout.styles.scss";
 
-export default function CheckoutItem({items$}) {
+export default function CheckoutItem({}) {
   const item = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
 
