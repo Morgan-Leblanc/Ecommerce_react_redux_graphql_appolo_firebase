@@ -3,7 +3,7 @@ import "./menu-item.styles.scss";
 import { withRouter } from "react-router-dom";
 
 function MenuItem({ title, imageUrl, size, linkUrl, history, match }) {
-  console.log("coucou",match.params);
+
   
   return (
     <div

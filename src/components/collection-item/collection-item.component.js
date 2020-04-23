@@ -5,7 +5,6 @@ import CustomButton from "../custom-button/custom-button.component";
 
 export default function CollectionItem({ item }) {
   const { name, price, imageUrl } = item;
-  console.log(item);
   
   const dispatch = useDispatch();
 

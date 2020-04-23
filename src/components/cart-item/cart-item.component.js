@@ -4,7 +4,6 @@ import "./cart-item.styles.scss";
 
 export default function CartItem() {
   const item = useSelector((state) => state.cart.cartItems);
-  console.log(item);
   return (
     <>
       {item.length ? (

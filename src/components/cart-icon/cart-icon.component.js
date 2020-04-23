@@ -7,7 +7,6 @@ export default function CartIcon() {
   const hidden = useSelector((state) => state.cart.hidden);
   const itemQuantity = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
-  console.log(hidden);
 
   return (
     <div

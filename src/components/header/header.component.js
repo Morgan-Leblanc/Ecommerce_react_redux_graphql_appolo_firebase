@@ -14,9 +14,6 @@ function Header() {
   const dispatch = useDispatch();
   
 
-  console.log(currentUser);
-  
-
   const UserStatus = () => {
     auth.signOut();
     dispatch({ type: "SET_CURRENT_USER", payload: null });
