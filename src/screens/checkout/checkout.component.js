@@ -1,10 +1,17 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import "./checkout.styles.scss";
-import CheckoutItem from "../../components/checkout-item/checkout.component"
+import CheckoutItem from "../../components/checkout-item/checkout.component";
+import StripeButton from "../../components/stripe-button/stripe-button.component";
 
 export default function CheckoutPage() {
   const items = useSelector((state) => state.cart.cartItems);
+
+  const total = items.reduce(
+    (accumaltedPrice, item) => accumaltedPrice + item.price * item.quantity,
+    0
+  );
+
   return (
     <div className="checkout-page">
       <div className="checkout-header">
@@ -26,15 +33,14 @@ export default function CheckoutPage() {
       </div>
       <CheckoutItem />
       <div className="total">
-        <span>
-          {" "}
-          TOTAL: $
-          {items.reduce(
-            (accumaltedPrice, item) => accumaltedPrice + (item.price * item.quantity),
-            0
-          )}
-        </span>
+        <span> TOTAL: ${total}</span>
       </div>
+      <div className="test-warning">
+        *Please use the following test credit card for payments*
+        <br/>
+        4242 4242 4242 4242 - Exp : 01/20 - CVV: 123
+      </div>
+      <StripeButton price={total} />
     </div>
   );
 }
