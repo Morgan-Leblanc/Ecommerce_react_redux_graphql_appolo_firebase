@@ -5,6 +5,7 @@ import "./collections-overview.styles.scss";
 
 const CollectionsOverview = () => {
   const dataShop = useSelector((state) => state.shop.collections);
+  console.log(dataShop);
 
   return (
     <div className="collections-overview">

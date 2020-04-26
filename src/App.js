@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
 import "./App.css";
 import Homepage from "./screens/homepage/homepage.component";
@@ -7,10 +7,15 @@ import ShopPage from "./screens/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignUpAndSignIn from "./screens/signin-signup/signinsignup";
 import CheckoutPage from "./screens/checkout/checkout.component";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument, addCollectionAndDocuments} from "./firebase/firebase.utils";
+
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
+  const collections = useSelector(state => state.shop.collections)
+
+  
+
   const dispatch = useDispatch();
 
   let unsubscribeFromAuth = null;
@@ -28,6 +33,7 @@ function App() {
         });
       }
       setCurrentUser(userAuth);
+      // addCollectionAndDocuments("collections", collections.map(({title,items}) => ({title,items})))
       return () => {
         unsubscribeFromAuth();
       };

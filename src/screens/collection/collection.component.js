@@ -5,30 +5,14 @@ import { useSelector } from "react-redux";
 
 export default function CollectionPage({ match }) {
   const items = useSelector((state) => state.shop.collections);
-  let category = match.params.collectionId;
+  console.log(items);
 
-  const categoryID = () => {
-    let categoryNumber = 0;
-    switch (category) {
-      case "hats":
-        return (categoryNumber = 1);
-      case "sneakers":
-        return (categoryNumber = 2);
-      case "jackets":
-        return (categoryNumber = 3);
-      case "womens":
-        return (categoryNumber = 4);
-      case "mens":
-        return (categoryNumber = 5);
-      default:
-        return categoryNumber;
-    }
-  };
+  let category = match.params.collectionId;
 
   return (
     <>
       {items
-        .filter((item) => item.id == categoryID(category))
+        .filter((item) => item.routeName == category)
         .map(({ id, title, routeName, items }) => (
           <div className="collection-page">
             <h2 className="title">{title}</h2>
